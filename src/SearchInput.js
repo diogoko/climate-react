@@ -47,6 +47,7 @@ const styles = (theme) => ({
 class SearchInput extends React.Component {
     render() {
         const { classes } = this.props;
+        const onChange = this.props.onChange || (() => {});
 
         return (
             <div className={classes.search}>
@@ -60,6 +61,7 @@ class SearchInput extends React.Component {
                   input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
+                onChange={onChange}
               />
             </div>
         );

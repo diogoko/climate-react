@@ -4,6 +4,7 @@ import { AppBar, Card, CardContent, CardHeader, Container, IconButton, makeStyle
 import RefreshIcon from '@material-ui/icons/Refresh';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import SearchInput from './SearchInput';
+import _ from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   temperature: {
@@ -20,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
 
+  const searchChange = _.debounce(function (event) {
+    console.log(`search ${event.target.value}`);
+  }, 750);
+
   return (
     <React.Fragment>
       <CssBaseline/>
@@ -31,7 +36,7 @@ function App() {
               <GpsFixedIcon/>
             </IconButton>
 
-            <SearchInput/>
+            <SearchInput onChange={searchChange}/>
           </Toolbar>
         </AppBar>
 
