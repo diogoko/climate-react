@@ -16,6 +16,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      weather: null
+    };
+  }
+
+  searchChange = _.debounce((event) => {
+    this.setState({
       weather: {
         name: 'São José do Rio Preto',
         main: {
@@ -34,11 +40,7 @@ class App extends React.Component {
           country: 'BR'
         }
       }
-    };
-  }
-
-  searchChange = _.debounce((event) => {
-    console.log(`search ${event.target.value}`);
+    });
   }, 750)
 
   render() {
@@ -59,7 +61,7 @@ class App extends React.Component {
             </Toolbar>
           </AppBar>
   
-          <WeatherCard weather={this.state.weather}/>
+          {this.state.weather !== null ? <WeatherCard weather={this.state.weather}/> : null}
         </Container>
       </React.Fragment>
     );
