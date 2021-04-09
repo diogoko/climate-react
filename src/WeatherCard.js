@@ -1,5 +1,6 @@
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
+import _ from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
     temperature: {
@@ -36,7 +37,7 @@ function WeatherCard(props) {
 
                 <ul>
                     <Typography component="li" variant="subtitle1" align="left">
-                        {weather.weather[0].main}
+                        {_.upperFirst(weather.weather[0].description)}
                     </Typography>
                     <Typography component="li" variant="subtitle1" align="left">
                         Feels like {weather.main.feels_like}℃
