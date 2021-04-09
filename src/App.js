@@ -5,6 +5,7 @@ import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import SearchInput from './SearchInput';
 import WeatherCard from './WeatherCard';
 import _ from 'lodash';
+import { weatherByName } from './openWeather';
 
 const styles = (theme) => ({
   main: {
@@ -21,27 +22,15 @@ class App extends React.Component {
   }
 
   searchChange = _.debounce((event) => {
-    this.setState({
-      weather: {
-        name: 'São José do Rio Preto',
-        main: {
-          temp: 22,
-          feels_like: 21,
-          temp_min: 18,
-          temp_max: 32,
-          humidity: 44,
-        },
-        weather: [
-          {
-            main: 'Clear'
-          }
-        ],
-        sys: {
-          country: 'BR'
-        }
-      }
+    const name = event.target.value.trim();
+    if (name === '') {
+      return;
+    }
+
+    weatherByName(name).then((weather) => {
+      this.setState({ weather });
     });
-  }, 750)
+  }, 1000)
 
   render() {
     const { classes } = this.props;

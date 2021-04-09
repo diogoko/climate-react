@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 async function weatherByName(name) {
-    console.log(process.env);
     const apiKey = process.env.REACT_APP_API_KEY;
     if (!apiKey) {
         throw new Error('Environment variable REACT_APP_API_KEY is not defined');
