@@ -13,6 +13,30 @@ const styles = (theme) => ({
 });
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      weather: {
+        name: 'São José do Rio Preto',
+        main: {
+          temp: 22,
+          feels_like: 21,
+          temp_min: 18,
+          temp_max: 32,
+          humidity: 44,
+        },
+        weather: [
+          {
+            main: 'Clear'
+          }
+        ],
+        sys: {
+          country: 'BR'
+        }
+      }
+    };
+  }
+
   searchChange = _.debounce((event) => {
     console.log(`search ${event.target.value}`);
   }, 750)
@@ -35,7 +59,7 @@ class App extends React.Component {
             </Toolbar>
           </AppBar>
   
-          <WeatherCard/>
+          <WeatherCard weather={this.state.weather}/>
         </Container>
       </React.Fragment>
     );

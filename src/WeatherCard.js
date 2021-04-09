@@ -3,52 +3,53 @@ import { Card, CardContent, CardHeader, makeStyles, Typography } from '@material
 
 const useStyles = makeStyles((theme) => ({
     temperature: {
-      alignItems: 'baseline',
-      display: 'flex',
-      justifyContent: 'center',
-      marginBottom: theme.spacing(2),
+        alignItems: 'baseline',
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: theme.spacing(2),
     }
 }));
 
-function WeatherCard() {
+function WeatherCard(props) {
     const classes = useStyles();
+    const weather = props.weather;
 
     return (
         <Card>
             <CardHeader
                 action={<RefreshIcon />}
-                subheader="Brazil"
+                subheader={weather.sys.country}
                 subheaderTypographyProps={{ align: 'center' }}
-                title="São José do Rio Preto"
+                title={weather.name}
                 titleTypographyProps={{ align: 'center' }}
             />
 
             <CardContent>
                 <div className={classes.temperature}>
                     <Typography component="h2" variant="h3" color="textPrimary">
-                        22
-            </Typography>
+                        {weather.main.temp}
+                    </Typography>
                     <Typography variant="h6" color="textSecondary">
                         ℃
-            </Typography>
+                    </Typography>
                 </div>
 
                 <ul>
                     <Typography component="li" variant="subtitle1" align="left">
-                        Clear
-            </Typography>
+                        {weather.weather[0].main}
+                    </Typography>
                     <Typography component="li" variant="subtitle1" align="left">
-                        Feels like 21℃
-            </Typography>
+                        Feels like {weather.main.feels_like}℃
+                    </Typography>
                     <Typography component="li" variant="subtitle1" align="left">
-                        Minimum 18℃
-            </Typography>
+                        Minimum {weather.main.temp_min}℃
+                    </Typography>
                     <Typography component="li" variant="subtitle1" align="left">
-                        Maximum 32℃
-            </Typography>
+                        Maximum {weather.main.temp_max}℃
+                    </Typography>
                     <Typography component="li" variant="subtitle1" align="left">
-                        Humidity 44%
-            </Typography>
+                        Humidity {weather.main.humidity}%
+                    </Typography>
                 </ul>
             </CardContent>
         </Card>
