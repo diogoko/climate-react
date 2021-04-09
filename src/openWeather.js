@@ -7,7 +7,7 @@ async function weatherByName(name) {
     }
 
     const url = 'https://api.openweathermap.org/data/2.5/weather';
-    const params = { q: name, appid: apiKey };
+    const params = { q: name, appid: apiKey, units: 'metric' };
     const resp = await axios.get(url, { params });
     return resp.data;
 }
